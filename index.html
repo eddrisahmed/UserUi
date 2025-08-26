@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fbm Ads App</title>
+    <title>Fbm Reward App</title>
     
-    <!-- Aapka Naya Ad Code -->
+    <!-- Ad Code -->
     <script src='//libtl.com/sdk.js' data-zone='9549781' data-sdk='show_9549781'></script>
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,7 +35,7 @@
         }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        /* New Styles for Additional Features */
+        /* New Styles */
         .streak-counter { 
             background: linear-gradient(45deg, #ff8c00, #ff5500); 
             color: white; 
@@ -67,6 +67,21 @@
             border-radius: 3px;
             transition: width 0.3s ease;
         }
+        /* Notification animation */
+        @keyframes ring { 
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(15deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        .ringing { animation: ring 0.5s ease-in-out infinite; }
+        /* Profile image */
+        .profile-image {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ff8c00;
+        }
     </style>
 </head>
 <body class="max-w-md mx-auto">
@@ -88,9 +103,10 @@
                 <p class="text-center text-gray-400"> একাউন্ট নাই ? <a href="#" id="show-signup" class="font-semibold text-accent">Sign Up</a></p>
             </div>
             <div id="signup-view" class="hidden">
-                 <input id="signup-name" type="text" placeholder="Poora Naam" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="signup-name" type="text" placeholder="Poora Naam" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="signup-referral" type="text" placeholder="Referral Code (Optional)" class="w-full p-3 rounded-lg input-field mb-4">
                 <button id="signup-btn" class="w-full p-3 rounded-lg btn-accent mb-4">Sign Up</button>
                 <p class="text-center text-gray-400">আগের একাউন্ট আচছে ? <a href="#" id="show-login" class="font-semibold text-accent">Login</a></p>
             </div>
@@ -138,36 +154,8 @@
                         </div>
                         <p class="text-sm text-gray-400">Ads Left: <span id="ads-left-count">...</span></p>
                     </div>
-                    <div class="space-y-3">
-                        <div class="bg-orange-500 p-3 rounded-lg flex items-center justify-between text-black">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">🤩</span><div><h3 class="font-bold">Watch Short Ad</h3><p class="text-xs font-medium">Rewarded Interstitial</p></div></div>
-                            <button class="bg-white text-orange-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">Claim</button>
-                        </div>
-                        <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">😎</span><div><h3 class="font-semibold">Click for Reward</h3><p class="text-xs text-gray-400">Rewarded Popup</p></div></div>
-                            <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">Claim</button>
-                        </div>
-                         <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">👀</span><div><h3 class="font-semibold">Watch a Video</h3><p class="text-xs text-gray-400">In-App Interstitial</p></div></div>
-                            <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">Start</button>
-                        </div>
-                        <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">🎮</span><div><h3 class="font-semibold">Play Mini App</h3><p class="text-xs text-gray-400">Get a big reward!</p></div></div>
-                            <button class="bg-blue-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('miniApp')">Play</button>
-                        </div>
-                        <!-- New Tasks -->
-                        <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">👥</span><div><h3 class="font-semibold">Join Our Group</h3><p class="text-xs text-gray-400">Join and get 100 coins</p></div></div>
-                            <button class="bg-green-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('group_join')">Join</button>
-                        </div>
-                        <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">📱</span><div><h3 class="font-semibold">Share on Facebook</h3><p class="text-xs text-gray-400">Share and get 80 coins</p></div></div>
-                            <button class="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('facebook_share')">Share</button>
-                        </div>
-                        <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                            <div class="flex items-center space-x-3"><span class="text-3xl">📺</span><div><h3 class="font-semibold">Subscribe YouTube</h3><p class="text-xs text-gray-400">Subscribe and get 120 coins</p></div></div>
-                            <button class="bg-red-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('youtube_subscribe')">Subscribe</button>
-                        </div>
+                    <div class="space-y-3" id="tasks-container">
+                        <!-- Tasks will be loaded dynamically from admin config -->
                     </div>
                 </section>
             </div>
@@ -203,11 +191,18 @@
                      <p class="text-sm text-gray-300"> আপনার বন্দধুদের সাথে সেয়ার করুন এবং অতিরিক্ত উপার্জন করুন।</p>
                  </div>
                  <button id="share-btn" class="w-full p-3 rounded-lg btn-accent"> আপনার লিনংক শেয়ার করুন...</button>
-                 <div class="card-bg p-4 rounded-lg mt-6">
+                 
+                 <div id="referral-input-section" class="card-bg p-4 rounded-lg mt-6">
                     <h3 class="font-semibold mb-3 text-center">কারর রেফার কোড আছে ?</h3>
                     <input id="enter-referral-code" type="text" placeholder="কোড এখানে দিন!" class="w-full p-3 rounded-lg input-field mb-3">
                     <button id="apply-referral-btn" class="w-full p-3 rounded-lg btn-outline-accent">কোড এপ্লাই করুণন..</button>
                  </div>
+
+                 <div id="referral-used-section" class="card-bg p-4 rounded-lg mt-6 hidden">
+                    <h3 class="font-semibold mb-3 text-center text-green-400">✅ রেফারেল কোড ব্যবহৃত হয়েছে</h3>
+                    <p class="text-center text-gray-300">আপনি ইতিমধ্যেই একটি রেফারেল কোড ব্যবহার করেছেন এবং <span id="referral-bonus-amount">100</span> কয়েন বোনাস পেয়েছেন!</p>
+                 </div>
+                 
                  <div class="card-bg p-4 rounded-lg">
                     <h3 class="font-semibold mb-3 text-center">রেফারেল স্ট্যাটাস</h3>
                     <div class="grid grid-cols-2 gap-4 text-center">
@@ -226,10 +221,25 @@
             <!-- Profile Page -->
             <div id="profile-page" class="p-4 space-y-6 sub-page">
                 <h2 class="text-xl font-bold text-center mb-4">Profile</h2>
+                
                 <div class="flex flex-col items-center">
-                    <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" class="w-24 h-24 rounded-full mb-4">
-                    <h2 id="profile-name" class="text-xl font-bold">User Name</h2>
-                    <p id="profile-email" class="text-gray-400">user@email.com</p>
+                    <div class="relative">
+                        <img id="profile-image" src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" class="profile-image">
+                        <label for="profile-image-upload" class="absolute bottom-0 right-0 bg-accent text-white p-2 rounded-full cursor-pointer">
+                            <i data-lucide="camera" class="w-4 h-4"></i>
+                        </label>
+                        <input type="file" id="profile-image-upload" accept="image/*" class="hidden">
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <h2 id="profile-name" class="text-xl font-bold mb-1">User Name</h2>
+                        <button onclick="editUserName()" class="text-accent text-sm flex items-center justify-center mx-auto">
+                            <i data-lucide="edit" class="w-4 h-4 mr-1"></i> Edit Name
+                        </button>
+                    </div>
+                    
+                    <p id="profile-email" class="text-gray-400 mt-2">user@email.com</p>
+                    
                     <div class="flex gap-2 mt-2">
                         <span class="level-badge" id="profile-level">Lvl 1</span>
                         <div class="streak-counter" id="profile-streak">
@@ -254,6 +264,10 @@
                             <span class="text-gray-400">Total Earned</span>
                             <span id="total-earned">0 coins</span>
                         </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">Total Withdrawn</span>
+                            <span id="total-withdrawn">0 coins</span>
+                        </div>
                     </div>
                 </div>
                 
@@ -264,6 +278,18 @@
             <div id="notifications-page" class="p-4 space-y-4 sub-page">
                 <h2 class="text-xl font-bold text-center">Notifications</h2>
                 <div id="notifications-list" class="space-y-3"></div>
+            </div>
+
+            <!-- Edit Name Modal -->
+            <div id="edit-name-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+                <div class="bg-gray-800 rounded-lg p-6 w-full max-w-sm">
+                    <h2 class="text-lg font-bold mb-4">Edit Name</h2>
+                    <input type="text" id="new-user-name" class="w-full p-3 rounded-lg input-field mb-4" placeholder="Enter new name">
+                    <div class="flex space-x-4">
+                        <button onclick="closeEditNameModal()" class="flex-1 p-3 rounded-lg bg-gray-600 text-white">Cancel</button>
+                        <button onclick="saveUserName()" class="flex-1 p-3 rounded-lg btn-accent">Save</button>
+                    </div>
+                </div>
             </div>
         </main>
 
@@ -282,8 +308,12 @@
         </div>
     </div>
 
+    <!-- Notification Sound Element -->
+    <audio id="notification-sound" preload="auto">
+        <source src="https://assets.mixkit.co/sfx/preview/mixkit-positive-notification-951.mp3" type="audio/mpeg">
+    </audio>
+
     <script type="module">
-        // Firebase configuration and imports
         const firebaseConfig = {
             apiKey: "AIzaSyCF55eWqzmeFsqC6ToG_44f7e4SRtmBs3E",
             authDomain: "fbmads-d5f34.firebaseapp.com",
@@ -296,18 +326,20 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, updateDoc, collection, addDoc, serverTimestamp, query, where, getDocs, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-storage.js";
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
-        // Global variables
         let currentUser = null;
         let userData = null;
         let appConfig = {};
+        let taskConfig = {};
+        let levelConfig = {};
+        let referralConfig = {};
 
-        // DOM elements
         const loader = document.getElementById('loader');
         const coinBalanceEl = document.getElementById('coin-balance');
         const walletCoinBalanceEl = document.getElementById('wallet-coin-balance');
@@ -326,28 +358,13 @@
         const levelProgressEl = document.getElementById('level-progress');
         const totalReferralsEl = document.getElementById('total-referrals');
         const referralEarningsEl = document.getElementById('referral-earnings');
+        const tasksContainerEl = document.getElementById('tasks-container');
+        const notificationBell = document.getElementById('notification-bell');
+        const notificationSound = document.getElementById('notification-sound');
+        const referralInputSection = document.getElementById('referral-input-section');
+        const referralUsedSection = document.getElementById('referral-used-section');
+        const referralBonusAmountEl = document.getElementById('referral-bonus-amount');
 
-        // Level configuration
-        const userLevels = {
-            1: { requiredCoins: 0, bonus: 0 },
-            2: { requiredCoins: 1000, bonus: 50 },
-            3: { requiredCoins: 3000, bonus: 100 },
-            4: { requiredCoins: 7000, bonus: 200 },
-            5: { requiredCoins: 15000, bonus: 500 }
-        };
-
-        // Task rewards configuration
-        const taskRewards = {
-            'interstitial': 50,
-            'popup': 40,
-            'inApp': 30,
-            'miniApp': 100,
-            'group_join': 100,
-            'facebook_share': 80,
-            'youtube_subscribe': 120
-        };
-
-        // Initialize application
         window.onload = () => {
             lucide.createIcons();
             setupEventListeners();
@@ -356,7 +373,6 @@
             onAuthStateChanged(auth, handleAuthStateChange);
         };
 
-        // Authentication state change handler
         async function handleAuthStateChange(user) {
             if (user) {
                 loader.style.display = 'flex';
@@ -370,7 +386,7 @@
                     return;
                 }
                 
-                await fetchAppConfig();
+                await fetchAllConfigs();
                 await checkNewNotifications();
                 await checkDailyStreak();
                 await checkLevelUp();
@@ -385,7 +401,13 @@
             }
         }
 
-        // Fetch user data from Firestore
+        async function fetchAllConfigs() {
+            await fetchAppConfig();
+            await fetchTaskConfig();
+            await fetchLevelConfig();
+            await fetchReferralConfig();
+        }
+
         async function fetchUserData() {
             if (!currentUser) return;
             const userRef = doc(db, "users", currentUser.uid);
@@ -393,6 +415,10 @@
                 const userSnap = await getDoc(userRef);
                 if (userSnap.exists()) {
                     userData = userSnap.data();
+                    // Load profile image if exists
+                    if (userData.profileImage) {
+                        document.getElementById('profile-image').src = userData.profileImage;
+                    }
                 } else {
                     await createNewUser(userRef);
                 }
@@ -402,16 +428,17 @@
             }
         }
 
-        // Create new user in Firestore
         async function createNewUser(userRef) {
             const ownReferralCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+            const referralCode = document.getElementById('signup-referral').value.trim().toUpperCase();
+            
             const defaultUserData = {
                 uid: currentUser.uid,
                 name: currentUser.email.split('@')[0],
                 email: currentUser.email,
                 balance: 50,
                 referralCode: ownReferralCode,
-                referredBy: null,
+                referredBy: referralCode || null,
                 lastNotificationCheck: new Date(),
                 createdAt: serverTimestamp(),
                 dailyAdCount: 0,
@@ -423,14 +450,20 @@
                 lastTaskDate: null,
                 totalTasksCompleted: 0,
                 totalEarned: 0,
+                totalWithdrawn: 0,
+                profileImage: "https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=",
                 devices: []
             };
             
             await setDoc(userRef, defaultUserData);
             userData = defaultUserData;
+
+            // Apply referral bonus if applicable
+            if (referralCode) {
+                await applyReferralBonus(referralCode, false);
+            }
         }
 
-        // Fetch app configuration
         async function fetchAppConfig() {
             const configRef = doc(db, "config", "main");
             try {
@@ -440,14 +473,185 @@
                     paymentMethods: ["UPI", "Paytm"], 
                     dailyAdLimit: 10, 
                     coinValueCoins: 1000, 
-                    coinValueInr: 10 
+                    coinValueInr: 10,
+                    dailyLoginBonus: 25,
+                    maintenanceMode: false,
+                    registrationEnabled: true
                 };
             } catch (error) {
                 console.error("Error fetching app config:", error);
             }
         }
 
-        // Check daily streak
+        async function fetchTaskConfig() {
+            const configRef = doc(db, "config", "tasks");
+            try {
+                const configSnap = await getDoc(configRef);
+                taskConfig = configSnap.exists() ? configSnap.data() : {
+                    dailyLimit: 10,
+                    rewards: {
+                        interstitial: 50,
+                        popup: 40,
+                        inApp: 30,
+                        miniApp: 100,
+                        group_join: 100,
+                        facebook_share: 80,
+                        youtube_subscribe: 120
+                    },
+                    enabledTasks: ['interstitial', 'popup', 'inApp', 'miniApp', 'group_join', 'facebook_share', 'youtube_subscribe']
+                };
+                renderTasks();
+            } catch (error) {
+                console.error("Error fetching task config:", error);
+            }
+        }
+
+        async function fetchLevelConfig() {
+            const configRef = doc(db, "config", "levels");
+            try {
+                const configSnap = await getDoc(configRef);
+                levelConfig = configSnap.exists() ? configSnap.data() : {
+                    levels: {
+                        1: { requiredCoins: 0, bonus: 0 },
+                        2: { requiredCoins: 1000, bonus: 50 },
+                        3: { requiredCoins: 3000, bonus: 100 },
+                        4: { requiredCoins: 7000, bonus: 200 },
+                        5: { requiredCoins: 15000, bonus: 500 }
+                    }
+                };
+            } catch (error) {
+                console.error("Error fetching level config:", error);
+            }
+        }
+
+        async function fetchReferralConfig() {
+            const configRef = doc(db, "config", "referral");
+            try {
+                const configSnap = await getDoc(configRef);
+                referralConfig = configSnap.exists() ? configSnap.data() : {
+                    referrerBonus: 100,
+                    refereeBonus: 100,
+                    enabled: true
+                };
+                updateReferralUI();
+            } catch (error) {
+                console.error("Error fetching referral config:", error);
+            }
+        }
+
+        function renderTasks() {
+            if (!taskConfig.rewards || !taskConfig.enabledTasks) return;
+            
+            tasksContainerEl.innerHTML = '';
+            
+            const taskTemplates = {
+                interstitial: `
+                    <div class="bg-orange-500 p-3 rounded-lg flex items-center justify-between text-black">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🤩</span>
+                            <div>
+                                <h3 class="font-bold">Watch Short Ad</h3>
+                                <p class="text-xs font-medium">Rewarded Interstitial</p>
+                            </div>
+                        </div>
+                        <button class="bg-white text-orange-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">
+                            Claim ${taskConfig.rewards.interstitial || 50}
+                        </button>
+                    </div>
+                `,
+                popup: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">😎</span>
+                            <div>
+                                <h3 class="font-semibold">Click for Reward</h3>
+                                <p class="text-xs text-gray-400">Rewarded Popup</p>
+                            </div>
+                        </div>
+                        <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">
+                            Claim ${taskConfig.rewards.popup || 40}
+                        </button>
+                    </div>
+                `,
+                inApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">👀</span>
+                            <div>
+                                <h3 class="font-semibold">Watch a Video</h3>
+                                <p class="text-xs text-gray-400">In-App Interstitial</p>
+                            </div>
+                        </div>
+                        <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">
+                            Start ${taskConfig.rewards.inApp || 30}
+                        </button>
+                    </div>
+                `,
+                miniApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎮</span>
+                            <div>
+                                <h3 class="font-semibold">Play Mini App</h3>
+                                <p class="text-xs text-gray-400">Get a big reward!</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('miniApp')">
+                            Play ${taskConfig.rewards.miniApp || 100}
+                        </button>
+                    </div>
+                `,
+                group_join: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">👥</span>
+                            <div>
+                                <h3 class="font-semibold">Join Our Group</h3>
+                                <p class="text-xs text-gray-400">Join and get bonus</p>
+                            </div>
+                        </div>
+                        <button class="bg-green-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('group_join')">
+                            Join ${taskConfig.rewards.group_join || 100}
+                        </button>
+                    </div>
+                `,
+                facebook_share: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">📱</span>
+                            <div>
+                                <h3 class="font-semibold">Share on Facebook</h3>
+                                <p class="text-xs text-gray-400">Share and get bonus</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('facebook_share')">
+                            Share ${taskConfig.rewards.facebook_share || 80}
+                        </button>
+                    </div>
+                `,
+                youtube_subscribe: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">📺</span>
+                            <div>
+                                <h3 class="font-semibold">Subscribe YouTube</h3>
+                                <p class="text-xs text-gray-400">Subscribe and get bonus</p>
+                            </div>
+                        </div>
+                        <button class="bg-red-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('youtube_subscribe')">
+                            Subscribe ${taskConfig.rewards.youtube_subscribe || 120}
+                        </button>
+                    </div>
+                `
+            };
+
+            taskConfig.enabledTasks.forEach(taskType => {
+                if (taskTemplates[taskType]) {
+                    tasksContainerEl.innerHTML += taskTemplates[taskType];
+                }
+            });
+        }
+
         async function checkDailyStreak() {
             const today = new Date().toISOString().split('T')[0];
             const yesterday = new Date();
@@ -478,24 +682,25 @@
             }
         }
 
-        // Check for level up
         async function checkLevelUp() {
             const currentLevel = userData.level || 1;
             const nextLevel = currentLevel + 1;
             
-            if (nextLevel in userLevels && userData.balance >= userLevels[nextLevel].requiredCoins) {
+            if (levelConfig.levels && levelConfig.levels[nextLevel] && userData.balance >= levelConfig.levels[nextLevel].requiredCoins) {
                 await updateDoc(doc(db, "users", currentUser.uid), { 
                     level: nextLevel 
                 });
                 userData.level = nextLevel;
                 
                 // Give level up bonus
-                await updateBalance(userLevels[nextLevel].bonus);
-                showAlert(`🎊 Level Up! You reached level ${nextLevel} and earned ${userLevels[nextLevel].bonus} coins bonus!`);
+                const bonusAmount = levelConfig.levels[nextLevel].bonus || 0;
+                if (bonusAmount > 0) {
+                    await updateBalance(bonusAmount);
+                    showAlert(`🎊 Level Up! You reached level ${nextLevel} and earned ${bonusAmount} coins bonus!`);
+                }
             }
         }
 
-        // Update user interface
         function updateUI() {
             if (!userData) return;
             
@@ -528,9 +733,20 @@
             updateStreakDisplay();
             updateLevelDisplay();
             updateReferralStats();
+            updateProfileStats();
         }
 
-        // Update streak display
+        function updateProfileStats() {
+            document.getElementById('tasks-completed').textContent = userData.totalTasksCompleted || 0;
+            document.getElementById('total-earned').textContent = `${userData.totalEarned || 0} coins`;
+            document.getElementById('total-withdrawn').textContent = `${userData.totalWithdrawn || 0} coins`;
+            
+            if (userData.createdAt) {
+                const joinDate = userData.createdAt.toDate();
+                document.getElementById('member-since').textContent = joinDate.toLocaleDateString();
+            }
+        }
+
         function updateStreakDisplay() {
             if (userData.streakCount > 0) {
                 streakCounterEl.style.display = 'inline-flex';
@@ -543,7 +759,6 @@
             }
         }
 
-        // Update level display
         function updateLevelDisplay() {
             const currentLevel = userData.level || 1;
             const nextLevel = currentLevel + 1;
@@ -551,23 +766,32 @@
             userLevelEl.textContent = `Lvl ${currentLevel}`;
             document.getElementById('profile-level').textContent = `Lvl ${currentLevel}`;
             
-            if (nextLevel in userLevels) {
-                const progress = (userData.balance / userLevels[nextLevel].requiredCoins) * 100;
+            if (levelConfig.levels && levelConfig.levels[nextLevel]) {
+                const progress = (userData.balance / levelConfig.levels[nextLevel].requiredCoins) * 100;
                 levelProgressEl.style.width = `${Math.min(progress, 100)}%`;
             }
         }
 
-        // Update referral stats
+        function updateReferralUI() {
+            if (userData.referredBy) {
+                referralInputSection.classList.add('hidden');
+                referralUsedSection.classList.remove('hidden');
+                referralBonusAmountEl.textContent = referralConfig.refereeBonus || 100;
+            } else {
+                referralInputSection.classList.remove('hidden');
+                referralUsedSection.classList.add('hidden');
+            }
+        }
+
         async function updateReferralStats() {
             const referralsRef = collection(db, "users");
             const q = query(referralsRef, where("referredBy", "==", userData.referralCode));
             const querySnapshot = await getDocs(q);
             
             totalReferralsEl.textContent = querySnapshot.size;
-            referralEarningsEl.textContent = querySnapshot.size * 100;
+            referralEarningsEl.textContent = querySnapshot.size * (referralConfig.referrerBonus || 100);
         }
 
-        // Update ads left count
         function updateAdsLeftCount() {
             const today = new Date().toISOString().split('T')[0];
             if (userData.lastAdWatchDate !== today) {
@@ -577,22 +801,22 @@
             adsLeftCountEl.textContent = adsLeft;
         }
 
-        // Update dynamic payment fields
         function updateDynamicPaymentFields() {
             const selectedMethod = withdrawMethodSelect.value.toLowerCase();
             let placeholder = "Detail Daalein";
             if (selectedMethod.includes('upi')) placeholder = "আপনার UPI আইডি লিখুন";
             if (selectedMethod.includes('paytm')) placeholder = "আপনার Paytm নম্বর লিখুন";
+            if (selectedMethod.includes('bkash')) placeholder = "আপনার Bkash নম্বর লিখুন";
+            if (selectedMethod.includes('nagad')) placeholder = "আপনার Nagad নম্বর লিখুন";
+            if (selectedMethod.includes('rocket')) placeholder = "আপনার Rocket নম্বর লিখুন";
             paymentDetailsContainer.innerHTML = `<input id="payment-detail-input" type="text" placeholder="${placeholder}" class="w-full p-3 rounded-lg input-field">`;
         }
 
-        // Show main page
         function showMainPage(pageId) {
             document.querySelectorAll('.main-page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
         }
 
-        // Navigate to sub-page
         function navigateTo(pageId) {
             document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
@@ -606,10 +830,10 @@
             if (pageId === 'wallet-page') loadWithdrawalHistory();
             if (pageId === 'refer-page') updateReferralStats();
             if (pageId === 'notifications-page') loadNotifications();
+            if (pageId === 'profile-page') updateProfileStats();
         }
         window.navigateTo = navigateTo;
 
-        // Setup event listeners
         function setupEventListeners() {
             // Authentication events
             document.getElementById('show-signup').addEventListener('click', (e) => {
@@ -648,6 +872,9 @@
             document.getElementById('home-withdraw-btn').addEventListener('click', () => navigateTo('wallet-page'));
             document.getElementById('apply-referral-btn').addEventListener('click', handleApplyReferralCode);
             withdrawMethodSelect.addEventListener('change', updateDynamicPaymentFields);
+
+            // Profile image upload
+            document.getElementById('profile-image-upload').addEventListener('change', handleProfileImageUpload);
             
             // Alert button
             document.getElementById('alert-ok-btn').addEventListener('click', () => {
@@ -655,7 +882,6 @@
             });
         }
 
-        // Handle user signup
         async function handleSignup() {
             const name = document.getElementById('signup-name').value;
             const email = document.getElementById('signup-email').value;
@@ -666,7 +892,7 @@
             }
             
             if (password.length < 6) {
-                return showAlert("পাসওয়ার্ড至少 ৬টি অক্ষর長 হওয়া প্রয়োজন।");
+                return showAlert("পাসওয়ার্ড至少 ৬টি অক্ষর長 হওয়া প্রয়োজন。");
             }
             
             loader.style.display = 'flex';
@@ -679,7 +905,6 @@
             }
         }
 
-        // Handle user login
         async function handleLogin() {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
@@ -698,12 +923,10 @@
             }
         }
 
-        // Handle user logout
         async function handleLogout() {
             await signOut(auth);
         }
 
-        // Check for new notifications
         async function checkNewNotifications() {
             const lastCheck = userData.lastNotificationCheck;
             if (!lastCheck || typeof lastCheck.seconds === 'undefined') {
@@ -712,10 +935,27 @@
             
             const q = query(collection(db, "notifications"), where("createdAt", ">", lastCheck), limit(1));
             const querySnapshot = await getDocs(q);
-            notificationDot.style.display = querySnapshot.empty ? 'none' : 'block';
+            
+            if (!querySnapshot.empty) {
+                notificationDot.style.display = 'block';
+                notificationBell.classList.add('ringing');
+                
+                // Play notification sound
+                try {
+                    await notificationSound.play();
+                } catch (error) {
+                    console.log("Notification sound play failed:", error);
+                }
+                
+                // Stop animation after 2 seconds
+                setTimeout(() => {
+                    notificationBell.classList.remove('ringing');
+                }, 2000);
+            } else {
+                notificationDot.style.display = 'none';
+            }
         }
 
-        // Load notifications
         async function loadNotifications() {
             const listEl = document.getElementById('notifications-list');
             listEl.innerHTML = '<p class="text-gray-400">Loading...</p>';
@@ -754,7 +994,6 @@
             }
         }
 
-        // Load withdrawal history
         async function loadWithdrawalHistory() {
             const historyList = document.getElementById('withdrawal-history-list');
             historyList.innerHTML = '<p class="text-gray-400">History load ho rahi hai...</p>';
@@ -798,7 +1037,6 @@
             }
         }
         
-        // Handle apply referral code
         async function handleApplyReferralCode() {
             if (userData.referredBy) {
                 return showAlert("আপনি ইতিমধ্যেই একটি রেফারেল কোড ব্যবহার করেছেন।");
@@ -821,8 +1059,12 @@
             loader.style.display = 'none';
         }
 
-        // Apply referral bonus
         async function applyReferralBonus(referrerCode, isManualApply = false) {
+            if (!referralConfig.enabled) {
+                if (isManualApply) showAlert("Referral system is currently disabled.");
+                return;
+            }
+
             const usersRef = collection(db, "users");
             const q = query(usersRef, where("referralCode", "==", referrerCode));
             
@@ -833,38 +1075,40 @@
                     const referrerRef = doc(db, "users", referrerDoc.id);
                     const referrerData = referrerDoc.data();
                     
+                    // Give bonus to referrer
                     await updateDoc(referrerRef, { 
-                        balance: (referrerData.balance || 0) + 100 
+                        balance: (referrerData.balance || 0) + (referralConfig.referrerBonus || 100) 
                     });
                     
+                    // Give bonus to referee (current user)
                     const newUserRef = doc(db, "users", currentUser.uid);
                     await updateDoc(newUserRef, { 
-                        balance: (userData.balance || 0) + 100, 
+                        balance: (userData.balance || 0) + (referralConfig.refereeBonus || 100), 
                         referredBy: referrerCode 
                     });
                     
-                    userData.balance += 100;
+                    userData.balance += (referralConfig.refereeBonus || 100);
                     userData.referredBy = referrerCode;
                     
                     updateUI();
+                    updateReferralUI();
                     
                     if (isManualApply) {
-                        showAlert("Code safaltapoorvak apply ho gaya! Aapko 100 coins mile hain.");
+                        showAlert(`Referral code applied successfully! You received ${referralConfig.refereeBonus || 100} coins.`);
                     }
                 } else {
                     if (isManualApply) {
-                        showAlert("Galat referral code.");
+                        showAlert("Invalid referral code.");
                     }
                 }
             } catch(error) {
                 console.error("Error applying referral bonus: ", error);
                 if (isManualApply) {
-                    showAlert("Code apply karte samay error aayi.");
+                    showAlert("Error applying referral code: " + error.message);
                 }
             }
         }
 
-        // Update user balance
         async function updateBalance(amount) {
             if (!currentUser) return;
             
@@ -886,7 +1130,6 @@
             await checkLevelUp();
         }
 
-        // Handle withdrawal request
         async function handleWithdrawal() {
             const amount = parseInt(document.getElementById('withdraw-amount').value);
             const method = document.getElementById('withdraw-method').value;
@@ -925,6 +1168,12 @@
                     requestedAt: serverTimestamp()
                 });
                 
+                // Update total withdrawn
+                await updateDoc(doc(db, "users", currentUser.uid), {
+                    totalWithdrawn: (userData.totalWithdrawn || 0) + amount
+                });
+                userData.totalWithdrawn = (userData.totalWithdrawn || 0) + amount;
+                
                 showAlert("Withdrawal request safaltapoorvak submit ho gayi hai!");
                 document.getElementById('withdraw-amount').value = '';
                 paymentDetailInput.value = '';
@@ -935,7 +1184,6 @@
             }
         }
 
-        // Copy referral code
         function copyReferralCode() {
             const textToCopy = referralCodeEl.textContent;
             const textArea = document.createElement("textarea");
@@ -956,7 +1204,6 @@
             document.body.removeChild(textArea);
         }
         
-        // Share referral code
         function shareReferralCode() {
             const text = `FbmReward এ যুক্ত হন আর টাকা কামাও! 🎁Bonus পাওয়ার জন্য আমার referral code ব্যাবহার করো: ${userData.referralCode}`;
             
@@ -972,7 +1219,6 @@
             }
         }
 
-        // Claim reward from ads
         window.claimReward = async function(taskType) {
             const today = new Date().toISOString().split('T')[0];
             const userRef = doc(db, "users", currentUser.uid);
@@ -1024,7 +1270,7 @@
                 userData.lastTaskDate = today;
                 userData.totalTasksCompleted = (userData.totalTasksCompleted || 0) + 1;
                 
-                const rewardAmount = taskRewards[taskType] || 0;
+                const rewardAmount = taskConfig.rewards[taskType] || 0;
                 
                 if (rewardAmount > 0) {
                     await updateBalance(rewardAmount);
@@ -1032,6 +1278,7 @@
                 }
                 
                 updateAdsLeftCount();
+                updateProfileStats();
                 
             }).catch(e => {
                 console.error("Ad error:", e);
@@ -1039,15 +1286,13 @@
             });
         }
 
-        // Complete social task
         window.completeSocialTask = async function(taskType) {
-            const rewardAmount = taskRewards[taskType] || 0;
+            const rewardAmount = taskConfig.rewards[taskType] || 0;
             
             if (rewardAmount <= 0) {
                 return showAlert("এই টাস্কের জন্য কোনো রিওয়ার্ড নেই।");
             }
             
-            // For social tasks, we'll simulate completion after user clicks
             const today = new Date().toISOString().split('T')[0];
             const userRef = doc(db, "users", currentUser.uid);
             
@@ -1061,9 +1306,9 @@
             
             await updateBalance(rewardAmount);
             showAlert(`🎉 ধন্যবাদ! আপনি ${rewardAmount} Coins জিতেছেন ${getTaskName(taskType)} এর জন্য।`);
+            updateProfileStats();
         }
 
-        // Get task name
         function getTaskName(taskType) {
             const taskNames = {
                 'group_join': 'গ্রুপে যোগদান',
@@ -1074,7 +1319,73 @@
             return taskNames[taskType] || 'টাস্ক';
         }
 
-        // Show alert message
+        async function handleProfileImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                return showAlert("Please select an image file.");
+            }
+
+            if (file.size > 5 * 1024 * 1024) {
+                return showAlert("Image size should be less than 5MB.");
+            }
+
+            loader.style.display = 'flex';
+            
+            try {
+                const storageRef = ref(storage, `profile-images/${currentUser.uid}`);
+                const snapshot = await uploadBytes(storageRef, file);
+                const downloadURL = await getDownloadURL(snapshot.ref);
+                
+                await updateDoc(doc(db, "users", currentUser.uid), {
+                    profileImage: downloadURL
+                });
+                
+                userData.profileImage = downloadURL;
+                document.getElementById('profile-image').src = downloadURL;
+                
+                showAlert("Profile image updated successfully!");
+            } catch (error) {
+                console.error("Error uploading profile image:", error);
+                showAlert("Error uploading image: " + error.message);
+            } finally {
+                loader.style.display = 'none';
+                event.target.value = '';
+            }
+        }
+
+        window.editUserName = function() {
+            document.getElementById('new-user-name').value = userData.name || '';
+            document.getElementById('edit-name-modal').classList.remove('hidden');
+        }
+
+        window.closeEditNameModal = function() {
+            document.getElementById('edit-name-modal').classList.add('hidden');
+        }
+
+        async function saveUserName() {
+            const newName = document.getElementById('new-user-name').value.trim();
+            
+            if (!newName) {
+                return showAlert("Please enter a valid name.");
+            }
+            
+            try {
+                await updateDoc(doc(db, "users", currentUser.uid), {
+                    name: newName
+                });
+                
+                userData.name = newName;
+                profileNameEl.textContent = newName;
+                
+                showAlert("Name updated successfully!");
+                closeEditNameModal();
+            } catch (error) {
+                showAlert("Error updating name: " + error.message);
+            }
+        }
+
         function showAlert(message) {
             document.getElementById('alert-message').textContent = message;
             document.getElementById('custom-alert').classList.remove('hidden');

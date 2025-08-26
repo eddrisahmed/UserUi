@@ -103,7 +103,7 @@
                 <p class="text-center text-gray-400"> একাউন্ট নাই ? <a href="#" id="show-signup" class="font-semibold text-accent">Sign Up</a></p>
             </div>
             <div id="signup-view" class="hidden">
-                <input id="signup-name" type="text" placeholder="Poora Naam" class="w-full p-3 rounded-lg input-field mb-4">
+                <input id="signup-name" type="text" placeholder="Full Naam" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-email" type="email" placeholder="Email" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-password" type="password" placeholder="Password" class="w-full p-3 rounded-lg input-field mb-4">
                 <input id="signup-referral" type="text" placeholder="Referral Code (Optional)" class="w-full p-3 rounded-lg input-field mb-4">
@@ -200,7 +200,7 @@
 
                  <div id="referral-used-section" class="card-bg p-4 rounded-lg mt-6 hidden">
                     <h3 class="font-semibold mb-3 text-center text-green-400">✅ রেফারেল কোড ব্যবহৃত হয়েছে</h3>
-                    <p class="text-center text-gray-300">আপনি ইতিমধ্যেই একটি রেফারেল কোড ব্যবহার করেছেন এবং <span id="referral-bonus-amount">100</span> কয়েন বোনাস পেয়েছেন!</p>
+                    <p class="text-center text-gray-300">আপনি ইতিমধ্যেই একটি রেফারেল কোড ব্যবহার করেছেন এবং <span id="referral-bonus-amount"> 50</span> কয়েন বোনাস পেয়েছেন!</p>
                  </div>
                  
                  <div class="card-bg p-4 rounded-lg">
@@ -555,7 +555,7 @@
                             </div>
                         </div>
                         <button class="bg-white text-orange-500 font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('interstitial')">
-                            Claim ${taskConfig.rewards.interstitial || 50}
+                            Claim ${taskConfig.rewards.interstitial || 30}
                         </button>
                     </div>
                 `,
@@ -569,7 +569,7 @@
                             </div>
                         </div>
                         <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">
-                            Claim ${taskConfig.rewards.popup || 40}
+                            Claim ${taskConfig.rewards.popup || 30}
                         </button>
                     </div>
                 `,
@@ -583,10 +583,10 @@
                             </div>
                         </div>
                         <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">
-                            Start ${taskConfig.rewards.inApp || 30}
+                            Start ${taskConfig.rewards.inApp || 5}
                         </button>
                     </div>
-                `,
+                `/*,
                 popup: `
                     <div class="card-bg p-3 rounded-lg flex items-center justify-between">
                         <div class="flex items-center space-x-3">
@@ -600,7 +600,7 @@
                             Claim ${taskConfig.rewards.popup || 40}
                         </button>
                     </div>
-                `/*,
+                `*//*,
                 group_join: `
                     <div class="card-bg p-3 rounded-lg flex items-center justify-between">
                         <div class="flex items-center space-x-3">

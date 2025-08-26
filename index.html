@@ -166,7 +166,7 @@
                 <div class="card-bg p-4 rounded-lg">
                     <h3 class="font-semibold mb-3"> Withdraw Now </h3>
                     <p class="text-sm text-gray-400 mb-1">Current Balance: <span class="font-bold text-accent"><span id="wallet-coin-balance">0</span> ef</span></p>
-                    <p class="text-sm text-gray-400 mb-2">Minimum Withdrawal: <span id="min-withdrawal-info">...</span> ef</p>
+                    <p class="text-sm text-gray-400 mb-2">Minimum Withdrawal: <span id="min-withdrawal-info">...</span> </p>
                     <p class="text-sm text-gray-400 mb-4 font-semibold" id="coin-value-info">...</p>
                     <input id="withdraw-amount" type="number" placeholder="ef Coin পরিমাণ লিখুন" class="w-full p-3 rounded-lg input-field mb-3">
                     <select id="withdraw-method" class="w-full p-3 rounded-lg input-field mb-3"></select>
@@ -587,6 +587,20 @@
                         </button>
                     </div>
                 `,
+                popup: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎪</span>
+                            <div>
+                                <h3 class="font-semibold">Click for Reward</h3>
+                                <p class="text-xs text-gray-400">Rewarded Popup</p>
+                            </div>
+                        </div>
+                        <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">
+                            Claim ${taskConfig.rewards.popup || 40}
+                        </button>
+                    </div>
+                `,
                 miniApp: `
                     <div class="card-bg p-3 rounded-lg flex items-center justify-between">
                         <div class="flex items-center space-x-3">
@@ -601,6 +615,118 @@
                         </button>
                     </div>
                 `,
+                inApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎃</span>
+                            <div>
+                                <h3 class="font-semibold">Watch a Video</h3>
+                                <p class="text-xs text-gray-400">In-App Interstitial</p>
+                            </div>
+                        </div>
+                        <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">
+                            Start ${taskConfig.rewards.inApp || 30}
+                        </button>
+                    </div>
+                `,
+                miniApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎮</span>
+                            <div>
+                                <h3 class="font-semibold">Play Mini App</h3>
+                                <p class="text-xs text-gray-400">Get a big reward!</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('miniApp')">
+                            Play ${taskConfig.rewards.miniApp || 100}
+                        </button>
+                    </div>
+                `,
+                popup: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">😎</span>
+                            <div>
+                                <h3 class="font-semibold">Click for Reward</h3>
+                                <p class="text-xs text-gray-400">Rewarded Popup</p>
+                            </div>
+                        </div>
+                        <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">
+                            Claim ${taskConfig.rewards.popup || 40}
+                        </button>
+                    </div>
+                `,
+                inApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">👀</span>
+                            <div>
+                                <h3 class="font-semibold">Watch a Video</h3>
+                                <p class="text-xs text-gray-400">In-App Interstitial</p>
+                            </div>
+                        </div>
+                        <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">
+                            Start ${taskConfig.rewards.inApp || 30}
+                        </button>
+                    </div>
+                `,
+                popup: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎪</span>
+                            <div>
+                                <h3 class="font-semibold">Click for Reward</h3>
+                                <p class="text-xs text-gray-400">Rewarded Popup</p>
+                            </div>
+                        </div>
+                        <button class="bg-white text-black font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('popup')">
+                            Claim ${taskConfig.rewards.popup || 40}
+                        </button>
+                    </div>
+                `,
+                miniApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎮</span>
+                            <div>
+                                <h3 class="font-semibold">Play Mini App</h3>
+                                <p class="text-xs text-gray-400">Get a big reward!</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('miniApp')">
+                            Play ${taskConfig.rewards.miniApp || 100}
+                        </button>
+                    </div>
+                `,
+                inApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎃</span>
+                            <div>
+                                <h3 class="font-semibold">Watch a Video</h3>
+                                <p class="text-xs text-gray-400">In-App Interstitial</p>
+                            </div>
+                        </div>
+                        <button class="bg-gray-700 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('inApp')">
+                            Start ${taskConfig.rewards.inApp || 30}
+                        </button>
+                    </div>
+                `,
+                miniApp: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">🎮</span>
+                            <div>
+                                <h3 class="font-semibold">Play Mini App</h3>
+                                <p class="text-xs text-gray-400">Get a big reward!</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="claimReward('miniApp')">
+                            Play ${taskConfig.rewards.miniApp || 100}
+                        </button>
+                    </div>
+                `/*,
                 group_join: `
                     <div class="card-bg p-3 rounded-lg flex items-center justify-between">
                         <div class="flex items-center space-x-3">
@@ -610,25 +736,25 @@
                                 <p class="text-xs text-gray-400">Join and get bonus</p>
                             </div>
                         </div>
-                        <button href="https//t.me/efEarn" class="bg-green-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('group_join')">
+                        <button class="bg-green-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('group_join')">
                             Join ${taskConfig.rewards.group_join || 10}
                         </button>
                     </div>
+                `, 
+                facebook_share: `
+                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <span class="text-3xl">📱</span>
+                           <div>
+                                <h3 class="font-semibold">Share on Facebook</h3>
+                                <p class="text-xs text-gray-400">Share and get bonus</p>
+                            </div>
+                        </div>
+                        <button class="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('facebook_share')">
+                           Share ${taskConfig.rewards.facebook_share || 80}
+                        </button>
+                    </div>
                 `,
-//                facebook_share: `
- //                   <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-   //                     <div class="flex items-center space-x-3">
-     //                       <span class="text-3xl">📱</span>
-       //                     <div>
-         //                       <h3 class="font-semibold">Share on Facebook</h3>
-           //                     <p class="text-xs text-gray-400">Share and get bonus</p>
-             //               </div>
-               //         </div>
-                 //       <button class="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('facebook_share')">
-                   //         Share ${taskConfig.rewards.facebook_share || 80}
-                     //   </button>
-        //            </div>
-        //        `,
                 youtube_subscribe: `
                     <div class="card-bg p-3 rounded-lg flex items-center justify-between">
                         <div class="flex items-center space-x-3">
@@ -638,11 +764,11 @@
                                 <p class="text-xs text-gray-400">Subscribe and get bonus</p>
                             </div>
                         </div>
-                        <button href="https//t.me/efEarn" class="bg-red-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('youtube_subscribe')">
+                        <button class="bg-red-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('youtube_subscribe')">
                             Subscribe ${taskConfig.rewards.youtube_subscribe || 120}
                         </button>
                     </div>
-                `
+                `*/
             };
 
             taskConfig.enabledTasks.forEach(taskType => {

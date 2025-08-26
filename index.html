@@ -966,7 +966,7 @@
             try {
                 const querySnapshot = await getDocs(q);
                 if (querySnapshot.empty) {
-                    listEl.innerHTML = '<p class="text-gray-400 text-center">Koi notifications nahi hain.</p>';
+                    listEl.innerHTML = '<p class="text-gray-400 text-center">কোন নটোটিফিকেশন নেই...!</p>';
                     return;
                 }
                 

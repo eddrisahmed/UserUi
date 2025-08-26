@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fbm Reward App</title>
+    <title>ef Reward App</title>
     
     <!-- Ad Code -->
     <script src='//libtl.com/sdk.js' data-zone='9549781' data-sdk='show_9549781'></script>
@@ -136,7 +136,7 @@
                 <div class="card-bg p-4 rounded-lg flex items-center justify-between">
                     <div>
                         <p class="text-gray-400 text-sm">Your Balance</p>
-                        <p class="text-3xl font-bold"><span id="coin-balance">0</span> Coins</p>
+                        <p class="text-3xl font-bold"><span id="coin-balance">0</span> ef</p>
                         <div class="flex items-center gap-2 mt-1">
                             <span class="level-badge" id="user-level">Lvl 1</span>
                             <div class="progress-bar w-20">
@@ -165,10 +165,10 @@
                 <h2 class="text-xl font-bold text-center">My Wallet</h2>
                 <div class="card-bg p-4 rounded-lg">
                     <h3 class="font-semibold mb-3"> Withdraw Now </h3>
-                    <p class="text-sm text-gray-400 mb-1">Current Balance: <span class="font-bold text-accent"><span id="wallet-coin-balance">0</span> Coins</span></p>
-                    <p class="text-sm text-gray-400 mb-2">Minimum Withdrawal: <span id="min-withdrawal-info">...</span> Coins</p>
+                    <p class="text-sm text-gray-400 mb-1">Current Balance: <span class="font-bold text-accent"><span id="wallet-coin-balance">0</span> ef</span></p>
+                    <p class="text-sm text-gray-400 mb-2">Minimum Withdrawal: <span id="min-withdrawal-info">...</span> ef</p>
                     <p class="text-sm text-gray-400 mb-4 font-semibold" id="coin-value-info">...</p>
-                    <input id="withdraw-amount" type="number" placeholder="Coin amount daalein" class="w-full p-3 rounded-lg input-field mb-3">
+                    <input id="withdraw-amount" type="number" placeholder="ef Coin পরিমাণ লিখুন" class="w-full p-3 rounded-lg input-field mb-3">
                     <select id="withdraw-method" class="w-full p-3 rounded-lg input-field mb-3"></select>
                     <div id="payment-details-container"></div>
                     <button id="withdraw-btn" class="w-full p-3 rounded-lg btn-accent mt-3">Request Withdrawal</button>
@@ -262,11 +262,11 @@
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Total Earned</span>
-                            <span id="total-earned">0 coins</span>
+                            <span id="total-earned">0 ef</span>
                         </div>
                         <div class="flex justify-between">
                             <span class="text-gray-400">Total Withdrawn</span>
-                            <span id="total-withdrawn">0 coins</span>
+                            <span id="total-withdrawn">0 ef</span>
                         </div>
                     </div>
                 </div>
@@ -470,9 +470,9 @@
                 const configSnap = await getDoc(configRef);
                 appConfig = configSnap.exists() ? configSnap.data() : { 
                     minWithdrawal: 5000, 
-                    paymentMethods: ["UPI", "Paytm"], 
+                    paymentMethods: ["Binance", "Payeer"], 
                     dailyAdLimit: 10, 
-                    coinValueCoins: 1000, 
+                    coinValueef: 1000, 
                     coinValueInr: 10,
                     dailyLoginBonus: 25,
                     maintenanceMode: false,
@@ -512,11 +512,11 @@
                 const configSnap = await getDoc(configRef);
                 levelConfig = configSnap.exists() ? configSnap.data() : {
                     levels: {
-                        1: { requiredCoins: 0, bonus: 0 },
-                        2: { requiredCoins: 1000, bonus: 50 },
-                        3: { requiredCoins: 3000, bonus: 100 },
-                        4: { requiredCoins: 7000, bonus: 200 },
-                        5: { requiredCoins: 15000, bonus: 500 }
+                        1: { requiredef: 0, bonus: 0 },
+                        2: { requiredef: 1000, bonus: 50 },
+                        3: { requiredef: 3000, bonus: 100 },
+                        4: { requiredef: 7000, bonus: 200 },
+                        5: { requiredef: 15000, bonus: 500 }
                     }
                 };
             } catch (error) {
@@ -610,25 +610,25 @@
                                 <p class="text-xs text-gray-400">Join and get bonus</p>
                             </div>
                         </div>
-                        <button class="bg-green-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('group_join')">
-                            Join ${taskConfig.rewards.group_join || 100}
+                        <button href="https//t.me/efEarn" class="bg-green-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('group_join')">
+                            Join ${taskConfig.rewards.group_join || 10}
                         </button>
                     </div>
                 `,
-                facebook_share: `
-                    <div class="card-bg p-3 rounded-lg flex items-center justify-between">
-                        <div class="flex items-center space-x-3">
-                            <span class="text-3xl">📱</span>
-                            <div>
-                                <h3 class="font-semibold">Share on Facebook</h3>
-                                <p class="text-xs text-gray-400">Share and get bonus</p>
-                            </div>
-                        </div>
-                        <button class="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('facebook_share')">
-                            Share ${taskConfig.rewards.facebook_share || 80}
-                        </button>
-                    </div>
-                `,
+//                facebook_share: `
+ //                   <div class="card-bg p-3 rounded-lg flex items-center justify-between">
+   //                     <div class="flex items-center space-x-3">
+     //                       <span class="text-3xl">📱</span>
+       //                     <div>
+         //                       <h3 class="font-semibold">Share on Facebook</h3>
+           //                     <p class="text-xs text-gray-400">Share and get bonus</p>
+             //               </div>
+               //         </div>
+                 //       <button class="bg-blue-600 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('facebook_share')">
+                   //         Share ${taskConfig.rewards.facebook_share || 80}
+                     //   </button>
+        //            </div>
+        //        `,
                 youtube_subscribe: `
                     <div class="card-bg p-3 rounded-lg flex items-center justify-between">
                         <div class="flex items-center space-x-3">
@@ -638,7 +638,7 @@
                                 <p class="text-xs text-gray-400">Subscribe and get bonus</p>
                             </div>
                         </div>
-                        <button class="bg-red-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('youtube_subscribe')">
+                        <button href="https//t.me/efEarn" class="bg-red-500 text-white font-bold px-6 py-2 rounded-lg text-sm btn" onclick="completeSocialTask('youtube_subscribe')">
                             Subscribe ${taskConfig.rewards.youtube_subscribe || 120}
                         </button>
                     </div>
@@ -670,7 +670,7 @@
                 // Give bonus for 7-day streak
                 if (newStreak % 7 === 0) {
                     await updateBalance(100);
-                    showAlert(`🎉 Congratulations! ${newStreak} day streak bonus: 100 coins!`);
+                    showAlert(`🎉 Congratulations! ${newStreak} day streak bonus: 100 ef!`);
                 }
             } else if (userData.lastTaskDate !== today) {
                 // Streak broken
@@ -686,7 +686,7 @@
             const currentLevel = userData.level || 1;
             const nextLevel = currentLevel + 1;
             
-            if (levelConfig.levels && levelConfig.levels[nextLevel] && userData.balance >= levelConfig.levels[nextLevel].requiredCoins) {
+            if (levelConfig.levels && levelConfig.levels[nextLevel] && userData.balance >= levelConfig.levels[nextLevel].requiredef) {
                 await updateDoc(doc(db, "users", currentUser.uid), { 
                     level: nextLevel 
                 });
@@ -696,7 +696,7 @@
                 const bonusAmount = levelConfig.levels[nextLevel].bonus || 0;
                 if (bonusAmount > 0) {
                     await updateBalance(bonusAmount);
-                    showAlert(`🎊 Level Up! You reached level ${nextLevel} and earned ${bonusAmount} coins bonus!`);
+                    showAlert(`🎊 Level Up! You reached level ${nextLevel} and earned ${bonusAmount} ef bonus!`);
                 }
             }
         }
@@ -715,8 +715,8 @@
             
             // Update referral information
             referralCodeEl.textContent = userData.referralCode || '...';
-            minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} Coins`;
-            coinValueInfoEl.textContent = `${appConfig.coinValueCoins || 1000} Coins = ৳${appConfig.coinValueInr || 10}`;
+            minWithdrawalInfoEl.textContent = `${appConfig.minWithdrawal || 5000} ef`;
+            coinValueInfoEl.textContent = `${appConfig.coinValueef || 1000} ef = ৳${appConfig.coinValueInr || 10}`;
             
             // Update payment methods
             withdrawMethodSelect.innerHTML = '';
@@ -738,8 +738,8 @@
 
         function updateProfileStats() {
             document.getElementById('tasks-completed').textContent = userData.totalTasksCompleted || 0;
-            document.getElementById('total-earned').textContent = `${userData.totalEarned || 0} coins`;
-            document.getElementById('total-withdrawn').textContent = `${userData.totalWithdrawn || 0} coins`;
+            document.getElementById('total-earned').textContent = `${userData.totalEarned || 0} ef`;
+            document.getElementById('total-withdrawn').textContent = `${userData.totalWithdrawn || 0} ef`;
             
             if (userData.createdAt) {
                 const joinDate = userData.createdAt.toDate();
@@ -767,7 +767,7 @@
             document.getElementById('profile-level').textContent = `Lvl ${currentLevel}`;
             
             if (levelConfig.levels && levelConfig.levels[nextLevel]) {
-                const progress = (userData.balance / levelConfig.levels[nextLevel].requiredCoins) * 100;
+                const progress = (userData.balance / levelConfig.levels[nextLevel].requiredef) * 100;
                 levelProgressEl.style.width = `${Math.min(progress, 100)}%`;
             }
         }
@@ -804,8 +804,8 @@
         function updateDynamicPaymentFields() {
             const selectedMethod = withdrawMethodSelect.value.toLowerCase();
             let placeholder = "Detail Daalein";
-            if (selectedMethod.includes('upi')) placeholder = "আপনার UPI আইডি লিখুন";
-            if (selectedMethod.includes('paytm')) placeholder = "আপনার Paytm নম্বর লিখুন";
+            if (selectedMethod.includes('binance')) placeholder = "আপনার Binaner আইডি লিখুন";
+            if (selectedMethod.includes('payeer')) placeholder = "আপনার Payeer নম্বর লিখুন";
             if (selectedMethod.includes('bkash')) placeholder = "আপনার Bkash নম্বর লিখুন";
             if (selectedMethod.includes('nagad')) placeholder = "আপনার Nagad নম্বর লিখুন";
             if (selectedMethod.includes('rocket')) placeholder = "আপনার Rocket নম্বর লিখুন";
@@ -1024,7 +1024,7 @@
                     historyList.innerHTML += `
                         <div class="card-bg p-3 rounded-lg flex items-center justify-between">
                             <div>
-                                <p class="font-semibold">${request.amount} Coins - ${request.method}</p>
+                                <p class="font-semibold">${request.amount} ef - ${request.method}</p>
                                 <p class="text-xs text-gray-400">${date}</p>
                             </div>
                             <p class="font-bold ${statusColor} capitalize">${status}</p>
@@ -1094,7 +1094,7 @@
                     updateReferralUI();
                     
                     if (isManualApply) {
-                        showAlert(`Referral code applied successfully! You received ${referralConfig.refereeBonus || 100} coins.`);
+                        showAlert(`Referral code applied successfully! You received ${referralConfig.refereeBonus || 100} ef.`);
                     }
                 } else {
                     if (isManualApply) {
@@ -1139,11 +1139,11 @@
             const minWithdrawal = appConfig.minWithdrawal || 5000;
             
             if (!amount || amount <= 0) {
-                return showAlert("Kripya valid amount daalein.");
+                return showAlert("দয়া করে বৈধ পরিমাণ লিখুন।");
             }
             
             if (amount < minWithdrawal) {
-                return showAlert(`Minimum withdrawal ${minWithdrawal} coins hai.`);
+                return showAlert(`Minimum withdrawal ${minWithdrawal} ef hai.`);
             }
             
             if (amount > userData.balance) {
@@ -1151,7 +1151,7 @@
             }
             
             if (!paymentDetail) {
-                return showAlert("Kripya payment detail daalein (UPI ID ya Paytm Number).");
+                return showAlert("অনুগ্রহ করে পেমেন্টের বিবরণ লিখুন!");
             }
             
             try {
@@ -1174,12 +1174,12 @@
                 });
                 userData.totalWithdrawn = (userData.totalWithdrawn || 0) + amount;
                 
-                showAlert("Withdrawal request safaltapoorvak submit ho gayi hai!");
+                showAlert("উত্তোলন রিকুয়েস্ট সফলভাবে জমা দেওয়া হয়েছে!");
                 document.getElementById('withdraw-amount').value = '';
                 paymentDetailInput.value = '';
                 
             } catch (error) {
-                showAlert("Request submit karne mein error: " + error.message);
+                showAlert("অনুরোধ জমা দেওয়ার সময় ত্রুটি:" + error.message);
                 await updateBalance(amount);
             }
         }
@@ -1196,20 +1196,20 @@
             
             try {
                 document.execCommand('copy');
-                showAlert("Referral code copy ho gaya!");
+                showAlert("রেফারেল কোড কপি করা হয়েছে!");
             } catch (err) {
-                showAlert("Code copy karne mein विफल.");
+                showAlert("কোডটি কপি করা যায়নি।");
             }
             
             document.body.removeChild(textArea);
         }
         
         function shareReferralCode() {
-            const text = `FbmReward এ যুক্ত হন আর টাকা কামাও! 🎁Bonus পাওয়ার জন্য আমার referral code ব্যাবহার করো: ${userData.referralCode}`;
+            const text = `efEarn App এ যুক্ত হও আর টাকা কামাও! 🎁Bonus পাওয়ার জন্য আমার referral code ব্যাবহার করো: ${userData.referralCode}`;
             
             if (navigator.share) {
                 navigator.share({ 
-                    title: 'FbmReward এ যুক্ত হন এবং ফ্রি ইনকাম করুণ!', 
+                    title: 'efEarn App এ যুক্ত হন এবং ফ্রি ইনকাম করুণ!', 
                     text: text, 
                     url: window.location.href 
                 }).catch((error) => console.error("Share failed:", error));
@@ -1274,7 +1274,7 @@
                 
                 if (rewardAmount > 0) {
                     await updateBalance(rewardAmount);
-                    showAlert(`🎉 অভিনন্দন আপনি ${rewardAmount} Coins জিতেছেন।`);
+                    showAlert(`🎉 অভিনন্দন আপনি ${rewardAmount} ef জিতেছেন।`);
                 }
                 
                 updateAdsLeftCount();
@@ -1305,7 +1305,7 @@
             userData.totalTasksCompleted = (userData.totalTasksCompleted || 0) + 1;
             
             await updateBalance(rewardAmount);
-            showAlert(`🎉 ধন্যবাদ! আপনি ${rewardAmount} Coins জিতেছেন ${getTaskName(taskType)} এর জন্য।`);
+            showAlert(`🎉 ধন্যবাদ! আপনি ${rewardAmount} ef জিতেছেন ${getTaskName(taskType)} এর জন্য।`);
             updateProfileStats();
         }
 
